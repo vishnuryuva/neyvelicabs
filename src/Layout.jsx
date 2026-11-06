@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Link,NavLink} from "react-router-dom";
 import {SITE,tel,wa} from "./data";
-const nav=[["Home","/"],["One Way","/one-way-drop-taxi"],["Airport","/airport-taxi"],["Outstation","/outstation-taxi"],["Routes","/routes"],["Tariff","/tariff"],["Services","/service"],["About","/about"],["Contact","/contact"]];
+const nav=[["Home","/"],["One Way","/one-way-drop-taxi"],["Airport","/airport-taxi"],["Outstation","/outstation-taxi"],["Routes","/routes"],["Gallery","/gallery"],["Tariff","/tariff"],["Services","/service"],["About","/about"],["Contact","/contact"]];
 export const Img=({src,label="Image",className=""})=>src?<img className={`img ${className}`} src={src} alt={label} loading="lazy"/>:<div className={`img ph ${className}`}><span>🚕</span><small>{label}</small></div>;
 export const Head=({title,sub})=><section className="pagehead"><div className="wrap"><h1>{title}</h1>{sub&&<p>{sub}</p>}</div></section>;
 export const Actions=({msg="Hello Epic Drop Taxi, I would like to book a cab."})=><div className="actions"><a className="btn wa" href={wa(msg)} target="_blank" rel="noreferrer">WhatsApp</a><a className="btn call" href={tel}>Call Now</a></div>;

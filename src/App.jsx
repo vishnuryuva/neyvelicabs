@@ -2,7 +2,15 @@ import {useEffect} from "react";
 import {BrowserRouter,Routes,Route,useLocation} from "react-router-dom";
 import Layout from "./Layout";
 import * as P from "./pages";
-const Top=()=>{const {pathname}=useLocation();useEffect(()=>window.scrollTo(0,0),[pathname]);return null};
+const Top=()=>{
+  const {pathname}=useLocation();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({top:0,left:0,behavior:"instant"});
+    }
+  }, [pathname]);
+  return null;
+};
 export default function App(){return(<BrowserRouter><Top/><Layout><Routes>
 <Route path="/" element={<P.Home/>}/>
 <Route path="/one-way-drop-taxi" element={<P.Service k="one-way-drop-taxi"/>}/>
@@ -10,6 +18,7 @@ export default function App(){return(<BrowserRouter><Top/><Layout><Routes>
 <Route path="/outstation-taxi" element={<P.Service k="outstation-taxi"/>}/>
 <Route path="/routes" element={<P.RoutesPage/>}/>
 <Route path="/routes/:slug" element={<P.RouteDetail/>}/>
+<Route path="/gallery" element={<P.GalleryPage/>}/>
 <Route path="/about" element={<P.About/>}/>
 <Route path="/tariff" element={<P.Tariff/>}/>
 <Route path="/service" element={<P.Services/>}/>

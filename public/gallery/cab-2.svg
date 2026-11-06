@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="#0f172a"/>
+  <rect x="60" y="70" width="1080" height="760" rx="28" fill="url(#g2)" opacity="0.2"/>
+  <rect x="150" y="500" width="900" height="130" rx="18" fill="#1e293b" opacity="0.8"/>
+  <rect x="220" y="420" width="700" height="110" rx="26" fill="#f8fafc" opacity="0.9"/>
+  <circle cx="280" cy="600" r="72" fill="#1f2937"/>
+  <circle cx="840" cy="600" r="72" fill="#1f2937"/>
+  <rect x="310" y="430" width="540" height="90" rx="18" fill="#dbeafe"/>
+  <text x="600" y="350" text-anchor="middle" font-size="54" font-family="Arial, sans-serif" fill="#f8fafc" font-weight="700">CAB PHOTO 2</text>
+  <text x="600" y="770" text-anchor="middle" font-size="32" font-family="Arial, sans-serif" fill="#f8fafc">Replace this placeholder with your uploaded cab image</text>
+</svg>

@@ -2,12 +2,17 @@ import {useEffect,useState} from "react";
 import {Link,useParams,useSearchParams} from "react-router-dom";
 import {SITE,IMG,wa,tel,cities,journeys,cars,bata,tariff,permits,reviews,faqs,services,allServices} from "./data";
 import {Img,Head,Actions} from "./Layout";
-const useTitle=t=>useEffect(()=>{document.title=`${t} | ${SITE.name}`},[t]);
+const useTitle=t=>{
+  useEffect(() => {
+    document.title = `${t} | ${SITE.name}`;
+  }, [t]);
+};
 const cap=s=>s.split("-").map(w=>w[0].toUpperCase()+w.slice(1)).join(" ");
 const Sec=({title,tag,children,alt})=><section className={`sec ${alt?"alt":""}`}><div className="wrap">{tag&&<small className="tag">{tag}</small>}{title&&<h2>{title}</h2>}{children}</div></section>;
 const CarCards=()=><div className="grid4">{cars.map(c=><div className="card" key={c.id}><Img label={c.name} src={IMG.cars?.[c.id]} className="h160"/><div className="pad"><h3>{c.name}</h3><p className="muted">{c.models} · {c.seats} seater · {c.bags} bags</p><p><b>One way ₹{c.one}/km</b><br/>Round trip ₹{c.round}/km</p><p className="muted sm">Min: 130 km one way · 250 km round trip (AC). Toll, parking, permit extra.</p><div className="actions"><Link className="btn solid" to={`/book?car=${c.id}`}>Book</Link><a className="btn wa" href={wa(`*New Customer Enquiry*\nCar: ${c.name}\nPlease share availability and booking details.`)} target="_blank" rel="noreferrer">WhatsApp</a></div></div></div>)}</div>;
+const GalleryGrid=()=><div className="grid3">{IMG.gallery.map((url,i)=><div className="card" key={url+i}><img className="gallery-image" src={url} alt={`Epic Drop Taxi cab photo ${i+1}`} /></div>)}</div>;
 const Reviews=()=><Sec title="What Our Riders Say" tag="4.9★ · Google Reviews" alt><div className="grid4">{reviews.map(([n,t])=><div className="card pad" key={n}><p>“{t}”</p><b>{n}</b><div className="muted sm">Google Review</div></div>)}</div><div className="actions center"><a className="btn solid" href={SITE.reviews} target="_blank" rel="noreferrer">Read reviews</a><a className="btn ghost" href={SITE.write} target="_blank" rel="noreferrer">Write a review</a></div></Sec>;
-const Gallery=()=><Sec title="Our Fleet Gallery" tag="Cab photos" alt><div className="grid3">{IMG.gallery.map((url,i)=><div className="card" key={url+i}><img className="gallery-image" src={url} alt={`Epic Drop Taxi cab photo ${i+1}`} /></div>)}</div></Sec>;
+const Gallery=()=><Sec title="Our Fleet Gallery" tag="Cab photos" alt><GalleryGrid/></Sec>;
 const Faq=()=><Sec title="One Way Taxi FAQs">{faqs.map(([q,a])=><details className="faq" key={q}><summary>{q}</summary><p>{a}</p></details>)}</Sec>;
 const CTA=()=><section className="cta"><div className="wrap"><h2>Ready to book a one way taxi?</h2><p>Share your journey details to get a current quote and vehicle availability.</p><Actions/></div></section>;
 
@@ -47,6 +52,8 @@ const j=slug.includes("-to-")?slug.split("-to-").map(cap):null;const name=j?`${j
 return(<><Head title={title} sub={c?c[2]:"Share pickup, drop, date and passenger count and we will confirm the vehicle and fare before pickup."}/>
 <Sec><div className="two"><Img label={name} src={c&&IMG.cities[c[0]]} className="h320"/><div><h2>Book a {name} cab</h2><p>Pay only for the journey you book. Fare is the per-km rate × distance (130 km minimum) plus driver bata. Toll, permit, parking, waiting and hill charges are extra.</p><ul className="ticks"><li>Sedan from ₹14/km</li><li>SUV / Innova from ₹19/km</li><li>Innova Crysta ₹21/km</li><li>24/7 pickups</li></ul><div className="actions"><Link className="btn solid" to={`/book?from=${j?j[0]:name}${j?`&to=${j[1]}`:""}`}>Book Now</Link><a className="btn wa" href={wa(`*New Customer Enquiry*\nRoute: ${name}\nPlease share availability and current fare.`)} target="_blank" rel="noreferrer">WhatsApp</a><a className="btn call" href={tel}>Call</a></div></div></div></Sec>
 <Sec title="Available cars" alt><CarCards/></Sec><CTA/></>)}
+
+export function GalleryPage(){useTitle("Our Fleet Gallery");return(<><Head title="Our Fleet Gallery" sub="Explore our dependable drop taxi fleet for one-way, airport, and outstation trips."/><Sec title="Cab photos" alt><GalleryGrid/></Sec><CTA/></>)}
 
 export function About(){useTitle("About Us");return(<><Head title="About Epic Drop Taxi" sub="A Neyveli-based drop taxi service connecting Tamil Nadu, Puducherry, Bengaluru and Kerala."/>
 <Sec><div className="two"><Img label="About us" src={IMG.about} className="h320"/><div><h2>Our story</h2><p>Epic Drop Taxi runs from Vadakuthu, Neyveli, serving Cuddalore and Villupuram districts and one way trips between cities across South India. We believe you should pay for the journey you take, with clear fares and a driver who shows up on time.</p><div className="stats dark">{[["5K+","Trips"],["100+","Routes"],["24/7","Support"],["4.9★","Rating"]].map(([a,b])=><div key={b}><b>{a}</b><span>{b}</span></div>)}</div></div></div></Sec>
