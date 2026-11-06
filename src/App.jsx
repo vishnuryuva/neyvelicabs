@@ -1,9 +1,9 @@
 import {useEffect} from "react";
-import {BrowserRouter,Routes,Route,useLocation} from "react-router-dom";
+import {HashRouter,Routes,Route,useLocation} from "react-router-dom";
 import Layout from "./Layout";
 import * as P from "./pages";
 const Top=()=>{const {pathname}=useLocation();useEffect(()=>window.scrollTo(0,0),[pathname]);return null};
-export default function App(){return(<BrowserRouter><Top/><Layout><Routes>
+export default function App(){return(<HashRouter><Top/><Layout><Routes>
 <Route path="/" element={<P.Home/>}/>
 <Route path="/one-way-drop-taxi" element={<P.Service k="one-way-drop-taxi"/>}/>
 <Route path="/airport-taxi" element={<P.Service k="airport-taxi"/>}/>
@@ -18,4 +18,4 @@ export default function App(){return(<BrowserRouter><Top/><Layout><Routes>
 <Route path="/terms" element={<P.Legal k="terms"/>}/>
 <Route path="/privacy" element={<P.Legal k="privacy"/>}/>
 <Route path="*" element={<P.NotFound/>}/>
-</Routes></Layout></BrowserRouter>)}
+</Routes></Layout></HashRouter>)}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Epic Drop Taxi icon">
+  <defs>
+    <linearGradient id="pinGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0b2340"/>
+      <stop offset="100%" stop-color="#102f4d"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="#050505"/>
+  <path d="M256 32C156 32 76 111 76 211c0 123 124 223 180 269 56-46 180-146 180-269 0-100-80-179-180-179z" fill="url(#pinGrad)"/>
+  <path d="M256 122c-63 0-115 52-115 115 0 60 46 109 103 113v55h25v-55c57-4 103-53 103-113 0-63-52-115-116-115zm0 38c43 0 77 34 77 77s-34 77-77 77-77-34-77-77 34-77 77-77z" fill="#f7b500"/>
+  <path d="M140 223c0-18 15-33 33-33h156c18 0 33 15 33 33v22c0 18-15 33-33 33H173c-18 0-33-15-33-33v-22z" fill="#f7b500"/>
+  <rect x="170" y="160" width="172" height="40" rx="12" fill="#f7b500"/>
+  <circle cx="178" cy="294" r="26" fill="#fff"/>
+  <circle cx="334" cy="294" r="26" fill="#fff"/>
+  <rect x="165" y="115" width="182" height="20" rx="10" fill="#f7b500"/>
+</svg>

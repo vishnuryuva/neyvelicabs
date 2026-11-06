@@ -1,5 +1,5 @@
 // ===== EDIT YOUR BUSINESS DETAILS HERE =====
-export const SITE={name:"NFS Cabs",phone:"919042612392",display:"+91 90426 12392",email:"info@nfscabs.com",
+export const SITE={name:"Epic Drop Taxi",phone:"919566227779",display:"+91 95662 27779",email:"epicdroptaxi@gmail.com",
 address:"Flat No. 1, Ashok Nagar, Vadakuthu, Neyveli, Cuddalore District, Tamil Nadu",
 instagram:"https://www.instagram.com/nfscabs2026",reviews:"https://maps.app.goo.gl/DMsuvWUT7mxQ4tYd9",write:"https://g.page/r/Cdla8uGVMJFWEAE/review",
 map:"https://www.google.com/maps?q=Vadakuthu+Neyveli&output=embed"};
@@ -52,7 +52,7 @@ export const tariff=[
 export const permits=[["KA",700,1000],["KL",1000,2500],["PY",850,850],["AP",750,2150]];
 export const reviews=[["Guru","Had a good experience for an outstation one-way trip. The cab was clean and the driver drove safely."],["Keerthana M","I needed a one-way drop taxi. Very convenient service and the driver was punctual."],["Krishna Rock","Good and affordable service."],["Venkadesaperumal P","Good service for outstation one-way travel. Clean cab and a professional driver."],["Laksh","Booking was easy and the journey was comfortable."],["Rajaganapathy P","Excellent service! Polite driver, safe driving and reached on time."],["Sharmila V","Clean and comfortable car, punctual driver. Highly recommended."],["Ramya Raj","Clean vehicle, prompt pickup and transparent pricing. Would use again."]];
 export const faqs=[
-["Where is NFS Cabs based?","We are based in Vadakuthu, Neyveli (Cuddalore district) and run one way taxis across Tamil Nadu, Puducherry, Bengaluru and Kerala."],
+["Where is Epic Drop Taxi based?","We are based in Vadakuthu, Neyveli (Cuddalore district) and run one way taxis across Tamil Nadu, Puducherry, Bengaluru and Kerala."],
 ["Which cities can I book a one way taxi from?","Neyveli, Cuddalore, Chidambaram, Chennai, Madurai, Coimbatore, Trichy, Salem, Pondicherry, Ooty, Bangalore and many more. Share your pickup and drop and we confirm availability."],
 ["One way taxi vs round trip?","A one way taxi is billed for the single journey (130 km minimum). A round trip includes the return leg, billed per km with a 250 km per day minimum."],
 ["How is the fare calculated?","Per-km rate for your vehicle times the distance (130 km minimum) plus driver bata. Toll, permit, parking, waiting and hill charges are extra."],

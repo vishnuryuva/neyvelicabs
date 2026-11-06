@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 260" role="img" aria-label="Epic Drop Taxi logo">
+  <rect width="1280" height="260" fill="#050505"/>
+
+  <g transform="translate(28,8)">
+    <path d="M110 10C57 10 15 52 15 105c0 64 52 116 95 157 43-41 95-93 95-157 0-53-42-95-95-95zm0 44c28 0 51 23 51 51s-23 51-51 51-51-23-51-51 23-51 51-51z" fill="#f7b500"/>
+    <circle cx="110" cy="116" r="52" fill="#f7b500"/>
+    <circle cx="110" cy="116" r="38" fill="#0b0b0b"/>
+    <path d="M80 116h60l14 28H66l14-28zm18-22 12-18h20l12 18v10H98v-10zm6 36h26l-4 18H108l-4-18z" fill="#f7b500"/>
+    <circle cx="92" cy="147" r="7" fill="#0b0b0b"/>
+    <circle cx="127" cy="147" r="7" fill="#0b0b0b"/>
+    <path d="M95 89h30l12 18H83l12-18z" fill="#f7b500"/>
+  </g>
+
+  <text x="250" y="128" fill="#f8f8f8" font-size="90" font-weight="900" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">EPIC DROP</text>
+  <text x="880" y="128" fill="#f7b500" font-size="90" font-weight="900" font-family="Arial, Helvetica, sans-serif" letter-spacing="2">TAXI</text>
+  <text x="255" y="198" fill="#f8f8f8" font-size="36" font-weight="700" font-family="Arial, Helvetica, sans-serif" letter-spacing="7">TOURS &amp; TRAVELS</text>
+</svg>
