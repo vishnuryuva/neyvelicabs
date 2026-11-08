@@ -10,45 +10,48 @@ const galleryFiles = Object.values(import.meta.glob('../public/gallery/*.{jpg,jp
   .sort();
 // ===== IMAGES: set live URLs here so the site loads real city and cab photos =====
 export const IMG={
-hero:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
+hero:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80",
 about:"https://images.unsplash.com/photo-1558980664-10e7170b5df9?auto=format&fit=crop&w=1200&q=80",
 airport:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80",
 outstation:"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1200&q=80",
-oneway:"https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1200&q=80",
+oneway:"https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=80",
 contact:"https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=80",
 gallery: galleryFiles,
 cars:{
-  sedan:"https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=900&q=80",
-  suv:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80",
-  innova:"https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=900&q=80",
-  "innova-crysta":"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80"
+  mini:"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Fmini-car-cab.avif&w=384&q=75",
+  sedan:"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Fswift-dzire-cab.avif&w=384&q=75",
+  suv:"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Fertiga-mpv-taxi.avif&w=384&q=75",
+  innova:"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Finnova-mpv-taxi.avif&w=384&q=75",
+  "innova-crysta":"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Finnova-crysta-cab-service.avif&w=384&q=75",
+  "innova-high-cross":"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Finnova-hycross-cab.webp&w=384&q=75",
+  "tempo-traveller":"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Ftempo-traveller-cab.webp&w=384&q=75"
 },
  cities:{
-  chennai:"https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=900&q=80",
-  madurai:"https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80",
-  coimbatore:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
-  trichy:"https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80",
-  bangalore:"https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=900&q=80",
-  pondicherry:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
-  ooty:"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80",
-  kodaikanal:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80",
-  karaikudi:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
-  rameshwaram:"https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80",
-  salem:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80",
-  erode:"https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80",
-  neyveli:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
-  kanyakumari:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80",
-  thanjavur:"https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80",
-  velankanni:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
-  tirunelveli:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
-  kumbakonam:"https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80",
-  cuddalore:"https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80",
-  chidambaram:"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80",
-  panruti:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
-  virudhachalam:"https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=900&q=80",
-  vadalur:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80",
-  villupuram:"https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80",
-  tiruvannamalai:"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80"
+  chennai:"/city-images/chennai.jpg",
+  madurai:"/city-images/madurai.jpg",
+  coimbatore:"/city-images/coimbatore.jpg",
+  trichy:"/city-images/trichy.jpg",
+  bangalore:"/city-images/bangalore.jpg",
+  pondicherry:"/city-images/pondicherry.jpg",
+  ooty:"/city-images/ooty.jpg",
+  kodaikanal:"/city-images/kodaikanal.jpg",
+  karaikudi:"/city-images/karaikudi.jpg",
+  rameshwaram:"/city-images/rameshwaram.jpg",
+  salem:"/city-images/salem.jpg",
+  erode:"/city-images/erode.jpg",
+  neyveli:"/city-images/neyveli.jpg",
+  kanyakumari:"/city-images/kanyakumari.jpg",
+  thanjavur:"/city-images/thanjavur.jpg",
+  velankanni:"/city-images/velankanni.jpg",
+  tirunelveli:"/city-images/tirunelveli.jpg",
+  kumbakonam:"/city-images/kumbakonam.jpg",
+  cuddalore:"/city-images/cuddalore.jpg",
+  chidambaram:"/city-images/chidambaram.jpg",
+  panruti:"/city-images/panruti.jpg",
+  virudhachalam:"/city-images/virudhachalam.jpg",
+  vadalur:"/city-images/vadalur.jpg",
+  villupuram:"/city-images/villupuram.jpg",
+  tiruvannamalai:"/city-images/tiruvannamalai.jpg"
  }
 };
 export const cities=[
@@ -79,14 +82,22 @@ export const cities=[
 ["tiruvannamalai","Tiruvannamalai","Arunachaleswarar temple, Girivalam pilgrims and Ramana Ashram visitors."]];
 export const journeys=["neyveli-to-chennai","chennai-to-madurai","neyveli-to-chennai-airport","chennai-to-coimbatore","neyveli-to-pondicherry","chennai-to-bangalore","neyveli-to-bangalore","chennai-to-pondicherry"];
 export const cars=[
-{id:"sedan",name:"Sedan",models:"Dzire / Etios",seats:"4+1",bags:2,one:14,round:13},
-{id:"suv",name:"SUV",models:"Ertiga / Xylo",seats:"6+1",bags:4,one:19,round:18},
-{id:"innova",name:"Innova",models:"Toyota Innova",seats:"7+1",bags:4,one:19,round:18},
-{id:"innova-crysta",name:"Innova Crysta",models:"Premium MPV",seats:"7+1",bags:4,one:21,round:20}];
-export const bata={sedan:400,suv:500,innova:500,"innova-crysta":500};
+{id:"mini",name:"Mini",models:"Alto / WagonR",seats:"4+1",bags:1,one:14,round:18,driverBata:400,minimum:150},
+{id:"sedan",name:"Sedan",models:"Swift Dzire / Etios",seats:"4+1",bags:2,one:15,round:20,driverBata:500,minimum:150},
+{id:"suv",name:"SUV",models:"Ertiga / Xylo",seats:"6+1",bags:4,one:20,round:26,driverBata:500,minimum:150},
+{id:"innova",name:"Innova",models:"Toyota Innova",seats:"7+1",bags:4,one:22,round:28,driverBata:500,minimum:150},
+{id:"innova-crysta",name:"Innova Crysta",models:"Premium MPV",seats:"7+1",bags:4,one:24,round:30,driverBata:500,minimum:150},
+{id:"innova-high-cross",name:"Innova High Cross",models:"Premium SUV",seats:"7+1",bags:4,one:26,round:32,driverBata:500,minimum:150},
+{id:"tempo-traveller",name:"Tempo Traveller",models:"12 / 17 Seater",seats:"12+1",bags:6,one:30,round:36,driverBata:500,minimum:150}];
+export const bata={mini:400,sedan:500,suv:500,innova:500,"innova-crysta":500,"innova-high-cross":500,"tempo-traveller":500};
 export const tariff=[
-["One Way Drop – Sedan (Dzire / Etios)",[["Rate","Rs. 14 / km"],["Driver Bata","Rs. 400"],["Minimum Distance","130 kms"],["Permit (KA/AP/PY/KL/TN)","Rs. 500"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
-["One Way Drop – SUV (Ertiga / Innova / Xylo)",[["Rate","Rs. 19 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","130 kms"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 1000 / 2500 / 1000"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
+["One Way Drop – Mini",[["Rate","Rs. 14 / km"],["Driver Bata","Rs. 400"],["Minimum Distance","150 kms"],["Permit (KA/AP/PY/KL/TN)","Rs. 500"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
+["One Way Drop – Sedan (Swift Dzire / Etios)",[["Rate","Rs. 15 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit (KA/AP/PY/KL/TN)","Rs. 500"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
+["One Way Drop – SUV (Ertiga / Xylo)",[["Rate","Rs. 20 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
+["One Way Drop – Innova",[["Rate","Rs. 22 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
+["One Way Drop – Innova Crysta",[["Rate","Rs. 24 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
+["One Way Drop – Innova High Cross",[["Rate","Rs. 26 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
+["One Way Drop – Tempo Traveller",[["Rate","Rs. 30 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
 ["Outstation Round Trip – Sedan",[["Rate","Rs. 13 / km"],["Driver Bata","Rs. 400"],["Minimum Usage","250 kms / day"],["Permit","Rs. 500"],["Hill / Pet / Luggage","Rs. 300 each"]]],
 ["Outstation Round Trip – SUV",[["Rate","Rs. 18 / km"],["Driver Bata","Rs. 500"],["Minimum Usage","250 kms / day"],["Permit","As applicable"],["Hill / Pet / Luggage","Rs. 300 each"]]],
 ["Local Pickup / Drop – Sedan",[["Package","Rs. 1200 for 40 kms"],["Extra KM","Rs. 25 / km"]]],
@@ -98,12 +109,12 @@ export const reviews=[["Guru","Had a good experience for an outstation one-way t
 export const faqs=[
 ["Where is Epic Drop Taxi based?","We are based in Vadakuthu, Neyveli (Cuddalore district) and run one way taxis across Tamil Nadu, Puducherry, Bengaluru and Kerala."],
 ["Which cities can I book a one way taxi from?","Neyveli, Cuddalore, Chidambaram, Chennai, Madurai, Coimbatore, Trichy, Salem, Pondicherry, Ooty, Bangalore and many more. Share your pickup and drop and we confirm availability."],
-["One way taxi vs round trip?","A one way taxi is billed for the single journey (130 km minimum). A round trip includes the return leg, billed per km with a 250 km per day minimum."],
-["How is the fare calculated?","Per-km rate for your vehicle times the distance (130 km minimum) plus driver bata. Toll, permit, parking, waiting and hill charges are extra."],
+["One way taxi vs round trip?","A one way taxi is billed for the single journey (150 km minimum). A round trip includes the return leg, billed per km with a 250 km per day minimum."],
+["How is the fare calculated?","Per-km rate for your vehicle times the distance (150 km minimum) plus driver bata. Toll, permit, parking, waiting and hill charges are extra."],
 ["Can I see the fare before I book?","Yes. Use the booking page for an approximate fare, send it on WhatsApp and we confirm the final fare before pickup."],
 ["Can I book an airport pickup or drop?","Yes. Share flight or travel time, pickup point and passenger count."]];
 export const services={
-"one-way-drop-taxi":{title:"One Way Drop Taxi",img:"oneway",intro:"Pay only for the journey you book, not for an empty return trip. City-to-city drops across Tamil Nadu, Puducherry, Bengaluru and Kerala.",points:["130 km minimum distance","Sedan, SUV, Innova and Crysta","Fare confirmed before pickup","24/7 call and WhatsApp booking"]},
+"one-way-drop-taxi":{title:"One Way Drop Taxi",img:"oneway",intro:"Pay only for the journey you book, not for an empty return trip. City-to-city drops across Tamil Nadu, Puducherry, Bengaluru and Kerala.",points:["150 km minimum distance","Mini, Sedan, SUV, Innova, Crysta and Tempo Traveller","Fare confirmed before pickup","24/7 call and WhatsApp booking"]},
 "airport-taxi":{title:"Airport Taxi",img:"airport",intro:"Confirmed pickup or drop for Chennai, Trichy, Madurai, Coimbatore and Bengaluru airports, timed to your flight.",points:["Flight-time based scheduling","Meet and greet on request","Luggage-friendly SUVs","Day and night service"]},
-"outstation-taxi":{title:"Outstation Taxi",img:"outstation",intro:"Plan an intercity one-way or round-trip cab with the right vehicle for your group, family or business trip.",points:["Round trip from Rs. 13 / km","250 km per day minimum","Hill, temple and tourist circuits","Verified, experienced drivers"]}};
+"outstation-taxi":{title:"Outstation Taxi",img:"outstation",intro:"Plan an intercity one-way or round-trip cab with the right vehicle for your group, family or business trip.",points:["One-way cab from Rs. 14 / km","150 km minimum distance","Hill, temple and tourist circuits","Verified, experienced drivers"]}};
 export const allServices=[["One Way Drop Taxi","/one-way-drop-taxi"],["Airport Taxi","/airport-taxi"],["Outstation Taxi","/outstation-taxi"],["Local Pickup & Drop","/tariff"],["Hourly Rental Packages","/tariff"],["Temple & Pilgrimage Tours","/outstation-taxi"]];
