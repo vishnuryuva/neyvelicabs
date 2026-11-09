@@ -6,8 +6,36 @@ import {translate} from "./i18n";
 export const LanguageContext = createContext({lang:"en", setLang:()=>{}});
 export const useLanguage = () => useContext(LanguageContext);
 
+const placeNames = [
+  "Tiruvannamalai","Virudhachalam","Kanyakumari","Rameshwaram","Chidambaram",
+  "Tiruchirappalli","Tirunelveli","Kumbakonam","Kodaikanal","Villupuram",
+  "Pondicherry","Puducherry","Coimbatore","Thanjavur","Velankanni",
+  "Bengaluru","Bangalore","Madurai","Chennai","Trichy","Salem","Cuddalore",
+  "Karaikudi","Neyveli","Panruti","Vadalur","Ooty","Erode"
+];
+const placePattern = new RegExp(
+  `(?<![\\p{L}\\p{N}])(${[...new Set(placeNames.flatMap(name=>[name,translate("ta",name)]))]
+    .sort((a,b)=>b.length-a.length)
+    .map(name=>name.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"))
+    .join("|")})(?![\\p{L}\\p{N}])`,
+  "giu"
+);
+
 function localizeNode(node,lang) {
-  if (typeof node === "string") return translate(lang,node);
+  if (typeof node === "string") {
+    const text = translate(lang,node);
+    const parts = [];
+    let lastIndex = 0;
+    for (const match of text.matchAll(placePattern)) {
+      const index = match.index ?? 0;
+      if (index > lastIndex) parts.push(text.slice(lastIndex,index));
+      parts.push(<span className="place-highlight" key={`${index}-${match[0]}`}>{match[0]}</span>);
+      lastIndex = index + match[0].length;
+    }
+    if (!parts.length) return text;
+    if (lastIndex < text.length) parts.push(text.slice(lastIndex));
+    return <>{parts}</>;
+  }
   if (!isValidElement(node)) return node;
   const props = {};
   for (const attribute of ["placeholder","aria-label","title","alt","sub","tag","label","msg"]) {
