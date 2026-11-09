@@ -23,8 +23,7 @@ cars:{
   suv:"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Fertiga-mpv-taxi.avif&w=384&q=75",
   innova:"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Finnova-mpv-taxi.avif&w=384&q=75",
   "innova-crysta":"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Finnova-crysta-cab-service.avif&w=384&q=75",
-  "innova-high-cross":"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Finnova-hycross-cab.webp&w=384&q=75",
-  "tempo-traveller":"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Ftempo-traveller-cab.webp&w=384&q=75"
+  "innova-high-cross":"https://www.droptaxi.live/_next/image?url=%2Fassets%2Fvehicles%2Finnova-hycross-cab.webp&w=384&q=75"
 },
  cities:{
   chennai:"/city-images/chennai.jpg",
@@ -83,23 +82,24 @@ export const cities=[
 export const journeys=["neyveli-to-chennai","chennai-to-madurai","neyveli-to-chennai-airport","chennai-to-coimbatore","neyveli-to-pondicherry","chennai-to-bangalore","neyveli-to-bangalore","chennai-to-pondicherry"];
 export const cars=[
 {id:"mini",name:"Mini",models:"Alto / WagonR",seats:"4+1",bags:1,one:14,round:18,driverBata:400,minimum:150},
-{id:"sedan",name:"Sedan",models:"Swift Dzire / Etios",seats:"4+1",bags:2,one:15,round:20,driverBata:500,minimum:150},
-{id:"suv",name:"SUV",models:"Ertiga / Xylo",seats:"6+1",bags:4,one:20,round:26,driverBata:500,minimum:150},
-{id:"innova",name:"Innova",models:"Toyota Innova",seats:"7+1",bags:4,one:22,round:28,driverBata:500,minimum:150},
+{id:"sedan",name:"Sedan",models:"Swift Dzire / Etios",seats:"4+1",bags:2,one:15,round:14,driverBata:400,minimum:150},
+{id:"suv",name:"SUV",models:"Ertiga / Xylo",seats:"6+1",bags:4,one:20,round:19,driverBata:500,minimum:150},
+{id:"innova",name:"Innova",models:"Toyota Innova",seats:"7+1",bags:4,one:20,round:19,driverBata:500,minimum:150},
 {id:"innova-crysta",name:"Innova Crysta",models:"Premium MPV",seats:"7+1",bags:4,one:24,round:30,driverBata:500,minimum:150},
-{id:"innova-high-cross",name:"Innova High Cross",models:"Premium SUV",seats:"7+1",bags:4,one:26,round:32,driverBata:500,minimum:150},
-{id:"tempo-traveller",name:"Tempo Traveller",models:"12 / 17 Seater",seats:"12+1",bags:6,one:30,round:36,driverBata:500,minimum:150}];
-export const bata={mini:400,sedan:500,suv:500,innova:500,"innova-crysta":500,"innova-high-cross":500,"tempo-traveller":500};
+{id:"innova-high-cross",name:"Innova High Cross",models:"Premium SUV",seats:"7+1",bags:4,one:26,round:32,driverBata:500,minimum:150}];
+export const bata={mini:400,sedan:400,suv:500,innova:500,"innova-crysta":500,"innova-high-cross":500};
 export const tariff=[
 ["One Way Drop – Mini",[["Rate","Rs. 14 / km"],["Driver Bata","Rs. 400"],["Minimum Distance","150 kms"],["Permit (KA/AP/PY/KL/TN)","Rs. 500"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
-["One Way Drop – Sedan (Swift Dzire / Etios)",[["Rate","Rs. 15 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit (KA/AP/PY/KL/TN)","Rs. 500"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
-["One Way Drop – SUV (Ertiga / Xylo)",[["Rate","Rs. 20 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
-["One Way Drop – Innova",[["Rate","Rs. 22 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
+["One Way Drop – Sedan (Swift Dzire / Etios)",[["Rate","Rs. 15 / km"],["Driver Bata","Rs. 400"],["Minimum Distance","150 kms"],["Additional Charge","One Way Toll"],["Permit (KA/AP/PY/KL/TN)","Rs. 500"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
+["One Way Drop – SUV (Ertiga / Xylo)",[["Rate","Rs. 20 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Additional Charge","One Way Toll"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
+["One Way Drop – Innova",[["Rate","Rs. 20 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Additional Charge","One Way Toll"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
 ["One Way Drop – Innova Crysta",[["Rate","Rs. 24 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
 ["One Way Drop – Innova High Cross",[["Rate","Rs. 26 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
-["One Way Drop – Tempo Traveller",[["Rate","Rs. 30 / km"],["Driver Bata","Rs. 500"],["Minimum Distance","150 kms"],["Permit KA / AP / PY / KL / TN","Rs. 1200 / 2500 / 850 / 750"],["Hill Charges","Rs. 300"],["Waiting","Rs. 150 / hr"],["Pet / Over Luggage","Rs. 300"]]],
-["Outstation Round Trip – Sedan",[["Rate","Rs. 13 / km"],["Driver Bata","Rs. 400"],["Minimum Usage","250 kms / day"],["Permit","Rs. 500"],["Hill / Pet / Luggage","Rs. 300 each"]]],
-["Outstation Round Trip – SUV",[["Rate","Rs. 18 / km"],["Driver Bata","Rs. 500"],["Minimum Usage","250 kms / day"],["Permit","As applicable"],["Hill / Pet / Luggage","Rs. 300 each"]]],
+["Outstation Round Trip – Mini",[["Rate","Rs. 18 / km"],["Driver Bata","Rs. 400"],["Minimum Usage","300 kms"],["Additional Charge","Two Way Toll"]]],
+["Outstation Round Trip – Sedan / Etios",[["Rate","Rs. 14 / km"],["Driver Bata","Rs. 400"],["Minimum Usage","300 kms"],["Permit","Rs. 500"],["Additional Charge","Two Way Toll"],["Hill / Pet / Luggage","Rs. 300 each"]]],
+["Outstation Round Trip – SUV / Innova",[["Rate","Rs. 19 / km"],["Driver Bata","Rs. 500"],["Minimum Usage","300 kms"],["Permit","As applicable"],["Additional Charge","Two Way Toll"],["Hill / Pet / Luggage","Rs. 300 each"]]],
+["Outstation Round Trip – Innova Crysta",[["Rate","Rs. 30 / km"],["Driver Bata","Rs. 500"],["Minimum Usage","300 kms"],["Additional Charge","Two Way Toll"]]],
+["Outstation Round Trip – Innova High Cross",[["Rate","Rs. 32 / km"],["Driver Bata","Rs. 500"],["Minimum Usage","300 kms"],["Additional Charge","Two Way Toll"]]],
 ["Local Pickup / Drop – Sedan",[["Package","Rs. 1200 for 40 kms"],["Extra KM","Rs. 25 / km"]]],
 ["Local Pickup / Drop – SUV",[["Package","Rs. 1600 for 40 kms"],["Extra KM","Rs. 35 / km"]]],
 ["Local Hourly – Sedan",[["Package","Rs. 2500 (8 hrs / 80 kms)"],["Extra Hour","Rs. 250 / hr"],["Extra KM","Rs. 25 / km"]]],
@@ -109,12 +109,12 @@ export const reviews=[["Guru","Had a good experience for an outstation one-way t
 export const faqs=[
 ["Where is Epic Drop Taxi based?","We are based in Vadakuthu, Neyveli (Cuddalore district) and run one way taxis across Tamil Nadu, Puducherry, Bengaluru and Kerala."],
 ["Which cities can I book a one way taxi from?","Neyveli, Cuddalore, Chidambaram, Chennai, Madurai, Coimbatore, Trichy, Salem, Pondicherry, Ooty, Bangalore and many more. Share your pickup and drop and we confirm availability."],
-["One way taxi vs round trip?","A one way taxi is billed for the single journey (150 km minimum). A round trip includes the return leg, billed per km with a 250 km per day minimum."],
-["How is the fare calculated?","Per-km rate for your vehicle times the distance (150 km minimum) plus driver bata. Toll, permit, parking, waiting and hill charges are extra."],
+["One way taxi vs round trip?","A one way taxi is billed for the single journey (150 km minimum). A round trip includes the return leg, billed per km with a 300 km minimum."],
+["How is the fare calculated?","Per-km rate for your vehicle times the driving distance (150 km minimum one way, 300 km minimum round trip) plus driver bata. Toll, permit, parking, waiting and hill charges are extra."],
 ["Can I see the fare before I book?","Yes. Use the booking page for an approximate fare, send it on WhatsApp and we confirm the final fare before pickup."],
 ["Can I book an airport pickup or drop?","Yes. Share flight or travel time, pickup point and passenger count."]];
 export const services={
-"one-way-drop-taxi":{title:"One Way Drop Taxi",img:"oneway",intro:"Pay only for the journey you book, not for an empty return trip. City-to-city drops across Tamil Nadu, Puducherry, Bengaluru and Kerala.",points:["150 km minimum distance","Mini, Sedan, SUV, Innova, Crysta and Tempo Traveller","Fare confirmed before pickup","24/7 call and WhatsApp booking"]},
+"one-way-drop-taxi":{title:"One Way Drop Taxi",img:"oneway",intro:"Pay only for the journey you book, not for an empty return trip. City-to-city drops across Tamil Nadu, Puducherry, Bengaluru and Kerala.",points:["150 km minimum distance","Mini, Sedan, SUV, Innova, Crysta and High Cross","Fare confirmed before pickup","24/7 call and WhatsApp booking"]},
 "airport-taxi":{title:"Airport Taxi",img:"airport",intro:"Confirmed pickup or drop for Chennai, Trichy, Madurai, Coimbatore and Bengaluru airports, timed to your flight.",points:["Flight-time based scheduling","Meet and greet on request","Luggage-friendly SUVs","Day and night service"]},
 "outstation-taxi":{title:"Outstation Taxi",img:"outstation",intro:"Plan an intercity one-way or round-trip cab with the right vehicle for your group, family or business trip.",points:["One-way cab from Rs. 14 / km","150 km minimum distance","Hill, temple and tourist circuits","Verified, experienced drivers"]}};
 export const allServices=[["One Way Drop Taxi","/one-way-drop-taxi"],["Airport Taxi","/airport-taxi"],["Outstation Taxi","/outstation-taxi"],["Local Pickup & Drop","/tariff"],["Hourly Rental Packages","/tariff"],["Temple & Pilgrimage Tours","/outstation-taxi"]];
