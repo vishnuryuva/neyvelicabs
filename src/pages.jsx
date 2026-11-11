@@ -1,14 +1,21 @@
 import {useEffect,useId,useRef,useState} from "react";
 import {Link,useParams,useSearchParams} from "react-router-dom";
-import {SITE,IMG,wa,tel,cities,journeys,cars,tariff,permits,reviews,faqs,services,allServices} from "./data";
+import {SITE,IMG,wa,tel,cities,journeys,seoRoutes,cars,tariff,permits,reviews,faqs,services,allServices} from "./data";
 import {Img,Head,Actions,LocalizedContent,useLanguage} from "./Layout";
 import {translate} from "./i18n";
 import {calculateFareQuote,getDrivingDistanceKm,searchLocations} from "./routing";
-const useTitle=t=>{
+import {updateSeo} from "./seo";
+const useTitle=(t,description,{noindex=false,pageSchema}={})=>{
   const {lang}=useLanguage();
   useEffect(() => {
-    document.title = `${translate(lang,t)} | ${SITE.name}`;
-  }, [lang,t]);
+    updateSeo({
+      title: `${translate(lang,t)} | ${SITE.name}`,
+      description: description || "Book a one-way drop taxi from Neyveli across Tamil Nadu and nearby states. 24/7 call and WhatsApp booking.",
+      noindex,
+      pageSchema,
+      locale: lang === "ta" ? "ta_IN" : "en_IN"
+    });
+  }, [lang,t,description,noindex,pageSchema]);
 };
 const cap=s=>s.split("-").map(w=>w[0].toUpperCase()+w.slice(1)).join(" ");
 const Sec=({title,tag,children,alt})=><section className={`sec ${alt?"alt":""}`}><div className="wrap">{tag&&<small className="tag">{tag}</small>}{title&&<h2>{title}</h2>}{children}</div></section>;
@@ -177,7 +184,12 @@ export function Home(){
     "one-way": {label: lang === "en" ? "One Way" : "ஒன் வே", toll: lang === "en" ? "One-way toll charges" : "ஒன்-வேயில் டோல் கட்டணம்", note: lang === "en" ? "Single trip fare" : "ஒற்றை பயண விலை"},
     "round-trip": {label: lang === "en" ? "Round Trip" : "ரவுண்ட் டிரிப்", toll: lang === "en" ? "Return tolls and parking extra" : "மீண்டும் செல்லும் டோல் மற்றும் பார்க்கிங் கூடுதல்", note: lang === "en" ? "Back-and-forth fare" : "மறுபுறம் செல்லும் விலை"}
   };
-  useTitle(lang === "en" ? "One Way Drop Taxi & Outstation Cabs in Tamil Nadu" : "தமிழ்நாட்டில் ஒன் வே டிராப் டாக்ஸி & அவுட்ஸ்டேஷன் கேப்ஸ்");
+  useTitle(
+    lang === "en" ? "One Way Drop Taxi & Outstation Cabs in Tamil Nadu" : "தமிழ்நாட்டில் ஒன் வே டிராப் டாக்ஸி & அவுட்ஸ்டேஷன் கேப்ஸ்",
+    lang === "en"
+      ? "Book a one-way drop taxi from Neyveli across Tamil Nadu and nearby states. Compare vehicles, check fares and book by call or WhatsApp, 24/7."
+      : "நெய்வேலியில் இருந்து தமிழ்நாடு மற்றும் அருகிலுள்ள மாநிலங்களுக்கு ஒன் வே டிராப் டாக்ஸி முன்பதிவு செய்யுங்கள். வாகனங்கள், கட்டணங்கள் மற்றும் 24/7 வாட்ஸ்அப் சேவை."
+  );
   return(<LocalizedContent><>
 <section className="hero"><div className="wrap two"><div>
 <small className="tag">{lang === "en" ? "Tamil Nadu · Puducherry · Bengaluru · Kerala" : "தமிழ்நாடு · புதுச்சேரி · பெங்களூர் · கேரளம்"}</small>
@@ -214,7 +226,7 @@ function QuickBook(){
   </form></LocalizedContent>;
 }
 
-export function Service({k}){const v=services[k];useTitle(v.title);return(<LocalizedContent><>
+export function Service({k}){const v=services[k];useTitle(v.title,v.description,{pageSchema:{"@type":"Service",name:v.title,description:v.description,serviceType:v.title,provider:{"@id":`${SITE.url}/#business`},areaServed:["Neyveli","Tamil Nadu","Puducherry","Bengaluru","Kerala"]}});return(<LocalizedContent><>
 <section className={`service-hero service-hero-${k}`}><div className="wrap service-hero-layout">
 <div className="service-hero-copy"><span className="service-eyebrow">24/7 DROP TAXI · TAMIL NADU</span><h1>{v.title}</h1><p>{v.intro}</p><Actions msg={`Hello, I need ${v.title}.`}/><div className="service-trust"><span>✓ Clear fares</span><span>✓ Reliable pickups</span><span>✓ Comfortable rides</span></div></div>
 <div className="service-hero-visual"><div className="service-image-frame"><Img label={v.title} src={IMG[v.img]} className="service-hero-image"/></div><div className="service-image-note"><span className="service-note-icon">✦</span><span><b>{v.title}</b><small>Travel comfortably, every time</small></span></div><div className="service-orbit" aria-hidden="true"/></div>
@@ -222,24 +234,97 @@ export function Service({k}){const v=services[k];useTitle(v.title);return(<Local
 <Sec><div className="service-details"><div className="service-process"><small className="tag">SIMPLE & CONVENIENT</small><h2>How it works</h2><ol className="steps"><li>Share pickup, drop, date and passengers</li><li>We confirm vehicle and fare</li><li>Driver arrives on time</li></ol></div><div className="service-highlights"><h3>Made for your journey</h3><ul className="ticks">{v.points.map(p=><li key={p}>{p}</li>)}</ul></div></div></Sec>
 <Sec title="Choose your car" alt><CarCards/></Sec><Faq/><CTA/></></LocalizedContent>)}
 
-export function RoutesPage(){useTitle("One Way Taxi Routes");return(<LocalizedContent><><Head title="One Way Taxi Routes" sub="Pick your city for route details, or share your journey and we will confirm."/>
-<Sec title="Popular journeys"><div className="chips">{journeys.map(j=><Link key={j} to={`/routes/${j}`}>{cap(j).replace(" To "," to ")}</Link>)}</div></Sec>
-<Sec title="All cities" alt><div className="grid3">{cities.map(([s,n,d])=><Link to={`/routes/${s}`} className="card pad" key={s}><h3>{n} Drop Taxi</h3><p className="muted">{d}</p></Link>)}</div></Sec><CTA/></></LocalizedContent>)}
+export function RoutesPage(){
+const {lang}=useLanguage();
+useTitle(
+  lang==="en"?"Taxi Routes & Airport Transfers":"டாக்ஸி வழித்தடங்கள் மற்றும் விமான நிலையப் பயணங்கள்",
+  lang==="en"
+    ?"Explore one-way taxi routes from Neyveli and across Tamil Nadu, with estimated fares, vehicle options and direct WhatsApp booking."
+    :"நெய்வேலி மற்றும் தமிழ்நாடு முழுவதும் ஒன் வே டாக்ஸி வழித்தடங்கள், தோராயக் கட்டணம், வாகனத் தேர்வுகள் மற்றும் வாட்ஸ்அப் முன்பதிவு."
+);
+return(<LocalizedContent><><Head title={lang==="en"?"One Way Taxi Routes & Airport Cabs":"ஒன் வே டாக்ஸி வழித்தடங்கள் மற்றும் விமான நிலைய கேப்கள்"} sub={lang==="en"?"Explore route-wise one-way taxi and airport transfer pages with estimated fares, vehicle options and direct WhatsApp booking.":"வழித்தட வாரியான ஒன் வே டாக்ஸி மற்றும் விமான நிலையப் பயணங்களுக்கான தோராயக் கட்டணம், வாகனங்கள் மற்றும் வாட்ஸ்அப் முன்பதிவைப் பாருங்கள்."}/>
+<Sec title={lang==="en"?"Popular routes & airport taxis":"பிரபலமான வழித்தடங்கள் மற்றும் விமான நிலைய டாக்ஸிகள்"}><div className="grid3">{seoRoutes.map(route=><Link to={`/routes/${route.slug}`} className="card pad route-list-card" key={route.slug}><small className="tag">{route.airport?(lang==="en"?"Airport Taxi":"விமான நிலைய டாக்ஸி"):(lang==="en"?"One Way Drop":"ஒன் வே டிராப்")}</small><h3>{lang==="en"?`${route.from} to ${route.to}`:`${route.fromTa} முதல் ${route.toTa} வரை`}</h3><p className="muted">{lang==="en"?"Fare estimate, available cars and booking details":"கட்டண மதிப்பீடு, வாகனங்கள் மற்றும் முன்பதிவு விவரங்கள்"}</p><span>{lang==="en"?"View route & fare →":"வழித்தடம் மற்றும் கட்டணத்தைப் பார்க்க →"}</span></Link>)}</div></Sec>
+<Sec title={lang==="en"?"Taxi service by city":"நகர வாரியான டாக்ஸி சேவை"} alt><div className="grid3">{cities.map(([s,n,d])=><Link to={`/routes/${s}`} className="card pad" key={s}><h3>{lang==="en"?`${n} Drop Taxi`:`${translate("ta",n)} டிராப் டாக்ஸி`}</h3><p className="muted">{d}</p></Link>)}</div></Sec><CTA/></></LocalizedContent>)
+}
 
-export function RouteDetail(){const {slug}=useParams();const c=cities.find(x=>x[0]===slug);
-const j=slug.includes("-to-")?slug.split("-to-").map(cap):null;const name=j?`${j[0]} to ${j[1]}`:c?c[1]:cap(slug);const title=`${name} One Way Taxi`;useTitle(title);
-return(<LocalizedContent><><Head title={title} sub={c?c[2]:"Share pickup, drop, date and passenger count and we will confirm the vehicle and fare before pickup."}/>
-<Sec><div className="two"><Img label={name} src={c&&IMG.cities[c[0]]} className="h320 city-image"/><div><h2>Book a {name} cab</h2><p>Pay only for the journey you book. Fare is the per-km rate × distance (150 km minimum) plus driver bata. Toll, permit, parking, waiting and hill charges are extra.</p><ul className="ticks"><li>Mini from ₹14/km</li><li>Sedan from ₹15/km</li><li>SUV from ₹20/km</li><li>Innova / Crysta / High Cross available</li><li>24/7 pickups</li></ul><div className="actions"><Link className="btn solid" to={`/book?from=${j?j[0]:name}${j?`&to=${j[1]}`:""}`}>Book Now</Link><a className="btn wa" href={wa(`*New Customer Enquiry*\nRoute: ${name}\nPlease share availability and current fare.`)} target="_blank" rel="noreferrer">WhatsApp</a><a className="btn call" href={tel}>Call</a></div></div></div></Sec>
-<Sec title="Available cars" alt><CarCards/></Sec><CTA/></></LocalizedContent>)}
+export function RouteDetail(){
+const {slug}=useParams();
+const {lang}=useLanguage();
+const route=seoRoutes.find(item=>item.slug===slug);
+const city=cities.find(item=>item[0]===slug);
+const routeFrom=route?(lang==="en"?route.from:route.fromTa):"";
+const routeTo=route?(lang==="en"?route.to:route.toTa):"";
+const routeName=route?`${routeFrom} ${lang==="en"?"to":"முதல்"} ${routeTo}`:"";
+const cityName=city?(lang==="en"?city[1]:translate("ta",city[1])):cap(slug);
+const title=route
+ ?(route.localAirport?(lang==="en"?"Coimbatore Airport Taxi":"கோயம்புத்தூர் விமான நிலைய டாக்ஸி"):(lang==="en"?`${route.from} to ${route.to} ${route.airport?"Taxi":"One Way Taxi"}`:`${routeFrom} முதல் ${routeTo} ${route.airport?"டாக்ஸி":"ஒன் வே டாக்ஸி"}`))
+ :(lang==="en"?`${cityName} Drop Taxi`:`${cityName} டிராப் டாக்ஸி`);
+const cityDescription=city?translate(lang,city[2]):(lang==="en"?"Share your pickup, destination and travel date for a confirmed quote.":"உறுதியான கட்டணத்திற்கு பிக்கப் இடம், சேருமிடம் மற்றும் பயணத் தேதியைப் பகிருங்கள்.");
+const description=route
+ ?(lang==="en"?`Book a ${route.from} to ${route.to} ${route.airport?"taxi":"one way taxi"} with Mini, Sedan, SUV and Innova options. Estimated fare details and WhatsApp booking.`:`${routeFrom} முதல் ${routeTo} வரை ${route.airport?"டாக்ஸி":"ஒன் வே டாக்ஸி"} முன்பதிவு. மினி, செடான், SUV மற்றும் இன்னோவா வாகனங்கள்; கட்டண விவரம் மற்றும் வாட்ஸ்அப் முன்பதிவு.`)
+ :(lang==="en"?`Book a drop taxi in ${cityName}. Explore one-way fares, Mini, Sedan, SUV and Innova vehicles, and book on WhatsApp.`:`${cityName} டிராப் டாக்ஸி. ஒன் வே கட்டணம், மினி, செடான், SUV, இன்னோவா வாகனங்கள் மற்றும் வாட்ஸ்அப் முன்பதிவு.`);
+const pageSchema={
+  "@type":"Service",
+  name:title,
+  description,
+  serviceType:route?(route.airport?"Airport taxi":"One-way taxi"):"Drop taxi",
+  provider:{"@id":`${SITE.url}/#business`},
+  areaServed:route?[route.from,route.to]:cityName
+};
+useTitle(title,description,{pageSchema:(route||city)?pageSchema:undefined,noindex:!route&&!city});
+const chargeableKm=route?Math.max(route.distanceKm,route.localAirport?0:150):150;
+const fareMin=route?(route.localAirport?1200:Math.round(chargeableKm*14+400)):null;
+const fareMax=route?(route.localAirport?1600:Math.round(chargeableKm*26+500)):null;
+const bookFrom=route?route.from:city?city[1]:cityName;
+const bookTo=route?route.to:"";
+const whatsappName=route?routeName:cityName;
+const whatsappBookingMessage=lang==="en"
+ ?`*New Customer Enquiry*\nRoute: ${whatsappName}\nPlease confirm availability and the current fare.`
+ :`*புதிய வாடிக்கையாளர் விசாரணை*\nவழித்தடம்: ${whatsappName}\nவாகனக் கிடைக்கும் நிலை மற்றும் தற்போதைய கட்டணத்தை உறுதிப்படுத்துங்கள்.`;
+const whatsappDetailsMessage=lang==="en"
+ ?`*New Customer Enquiry*\nRoute: ${whatsappName}\nPlease share pickup point, travel date and passenger count.`
+ :`*புதிய வாடிக்கையாளர் விசாரணை*\nவழித்தடம்: ${whatsappName}\nபிக்கப் இடம், பயணத் தேதி மற்றும் பயணிகள் எண்ணிக்கையைப் பகிருங்கள்.`;
+const imageKey=city?.[0]||(route?.from.toLowerCase().replaceAll(" ","")||"");
+const imageSrc=IMG.cities[imageKey]||IMG.cities[route?.to.toLowerCase().replaceAll(" ","")];
+const fareText=route?(route.localAirport
+ ?(lang==="en"?"Approx. ₹1,200–₹1,600 for local drop packages up to 40 km.":"40 கி.மீ. வரையிலான உள்ளூர் டிராப் பேக்கேஜ் தோராயமாக ₹1,200–₹1,600.")
+ :(lang==="en"?`Approx. ₹${fareMin.toLocaleString("en-IN")}–₹${fareMax.toLocaleString("en-IN")} one way, based on ${route.distanceKm} km estimated distance.`:`ஒரு வழிப் பயணத்திற்கு தோராயமாக ₹${fareMin.toLocaleString("en-IN")}–₹${fareMax.toLocaleString("en-IN")}; ${route.distanceKm} கி.மீ. மதிப்பிடப்பட்ட தூரத்தின் அடிப்படையில்.`))
+ :(lang==="en"?"Indicative one-way minimum fare: ₹2,500–₹4,400 for 150 km, based on Mini to premium vehicle rates; driver bata is included.":"தோராய ஒன் வே குறைந்தபட்சக் கட்டணம்: 150 கி.மீ.க்கு மினி முதல் பிரீமியம் வாகனம் வரை ₹2,500–₹4,400; ஓட்டுநர் படி இதில் சேர்க்கப்பட்டுள்ளது.");
+return(<LocalizedContent><>
+<Head title={title} sub={route?(lang==="en"?`One-way cab from ${route.from} to ${route.to}. Compare vehicle options, check an estimated fare range and book directly on WhatsApp.`:`${routeFrom} முதல் ${routeTo} வரை ஒன் வே கேப். வாகனங்களை ஒப்பிட்டு, தோராயக் கட்டணத்தைப் பார்த்து, வாட்ஸ்அப்பில் முன்பதிவு செய்யுங்கள்.`):cityDescription}/>
+<Sec><div className="two"><Img label={routeName||cityName} src={imageSrc} className="h320 city-image"/><div>
+<small className="tag">{route?.airport?(lang==="en"?"AIRPORT TAXI":"விமான நிலைய டாக்ஸி"):(lang==="en"?"ONE WAY DROP TAXI":"ஒன் வே டிராப் டாக்ஸி")}</small>
+<h2>{route?(lang==="en"?`Book a ${route.from} to ${route.to} cab`:`${routeFrom} முதல் ${routeTo} வரை கேப் முன்பதிவு`):(lang==="en"?`Book a ${cityName} cab`:`${cityName} கேப் முன்பதிவு`)}</h2>
+<p className="route-fare-range">{fareText}</p>
+<p>{route?(lang==="en"?`Plan a comfortable ${route.airport?"airport transfer":"one-way trip"} from ${route.from} to ${route.to}. The distance shown is an estimate; confirm the route and final fare with us before pickup.`:`${routeFrom} முதல் ${routeTo} வரை வசதியான ${route.airport?"விமான நிலையப் பயணத்தை":"ஒன் வே பயணத்தை"} திட்டமிடுங்கள். காட்டப்பட்ட தூரம் தோராயமானது; பிக்கப்புக்கு முன் பாதை மற்றும் இறுதிக் கட்டணத்தை உறுதிப்படுத்துங்கள்.`):(lang==="en"?`${cityDescription} Choose a one-way drop, airport transfer or outstation trip with a fare confirmed before pickup.`:`${cityDescription} ஒன் வே டிராப், விமான நிலையம் அல்லது வெளியூர் பயணத்தைத் தேர்வு செய்து, பிக்கப்புக்கு முன் கட்டணத்தை உறுதிப்படுத்துங்கள்.`)}</p>
+<ul className="ticks">
+<li>{lang==="en"?"Mini from ₹14/km · Sedan from ₹15/km":"மினி ₹14/கி.மீ. முதல் · செடான் ₹15/கி.மீ. முதல்"}</li>
+<li>{lang==="en"?"SUV / Innova from ₹20/km; premium MPVs available":"SUV / இன்னோவா ₹20/கி.மீ. முதல்; பிரீமியம் MPV-களும் உண்டு"}</li>
+<li>{lang==="en"?"150 km minimum for intercity one-way trips":"நகரங்களுக்கு இடையிலான ஒன் வே பயணங்களுக்கு குறைந்தபட்சம் 150 கி.மீ."}</li>
+<li>{lang==="en"?"Toll, permit, parking and applicable extras are additional":"சுங்கம், அனுமதி, பார்க்கிங் மற்றும் பொருந்தும் கூடுதல் கட்டணங்கள் தனி"}</li>
+<li>{lang==="en"?"24/7 pickup coordination and WhatsApp booking":"24/7 பிக்கப் ஒருங்கிணைப்பு மற்றும் வாட்ஸ்அப் முன்பதிவு"}</li>
+</ul>
+<div className="actions"><Link className="btn solid" to={`/book?from=${encodeURIComponent(bookFrom)}${bookTo?`&to=${encodeURIComponent(bookTo)}`:""}`}>{lang==="en"?"Book this trip":"இந்தப் பயணத்தை முன்பதிவு"}</Link><a className="btn wa" href={wa(whatsappBookingMessage)} target="_blank" rel="noreferrer">{lang==="en"?"Book on WhatsApp":"வாட்ஸ்அப்பில் முன்பதிவு"}</a><a className="btn call" href={tel}>{lang==="en"?"Call":"அழைக்க"}</a></div>
+</div></div></Sec>
+<Sec title={lang==="en"?"Fare range & vehicle options":"கட்டண வரம்பு மற்றும் வாகனத் தேர்வுகள்"} alt>
+<p>{route?(route.localAirport?(lang==="en"?"Coimbatore local drop tariff: Sedan ₹1,200 (40 km) and SUV ₹1,600 (40 km). Extra distance is charged separately.":"கோயம்புத்தூர் உள்ளூர் டிராப் கட்டணம்: செடான் ₹1,200 (40 கி.மீ.), SUV ₹1,600 (40 கி.மீ.). கூடுதல் தூரத்திற்கு தனிக் கட்டணம்."):(lang==="en"?`The estimated ${route.distanceKm} km route uses the published one-way rates and 150 km minimum: ₹14–₹26/km plus ₹400–₹500 driver bata. The fare range above is indicative, not a fixed quote.`:`மதிப்பிடப்பட்ட ${route.distanceKm} கி.மீ. வழித்தடத்திற்கு வெளியிடப்பட்ட ஒன் வே கட்டணங்களும் 150 கி.மீ. குறைந்தபட்சமும் பொருந்தும்: ₹14–₹26/கி.மீ. மற்றும் ₹400–₹500 ஓட்டுநர் படி. மேலுள்ள கட்டண வரம்பு தோராயமானது; உறுதியான விலை அல்ல.`)):(lang==="en"?"One-way fares start at ₹14/km for Mini, ₹15/km for Sedan, and ₹20/km for SUV and Innova. Minimum chargeable distance is 150 km; driver bata and applicable extras are additional.":"ஒன் வே கட்டணம் மினிக்கு ₹14/கி.மீ., செடானுக்கு ₹15/கி.மீ., SUV மற்றும் இன்னோவாவுக்கு ₹20/கி.மீ. முதல். குறைந்தபட்ச கட்டணத் தூரம் 150 கி.மீ.; ஓட்டுநர் படி மற்றும் பொருந்தும் கூடுதல் கட்டணங்கள் தனி.")}</p>
+<p className="muted sm">{lang==="en"?"Route distance and fares are estimates only. Confirm vehicle availability, exact distance and final fare with Epic Drop Taxi before booking.":"வழித்தூரமும் கட்டணமும் தோராயமானவை. முன்பதிவுக்கு முன் வாகனக் கிடைக்கும் நிலை, துல்லியமான தூரம் மற்றும் இறுதிக் கட்டணத்தை எபிக் டிராப் டாக்ஸியிடம் உறுதிப்படுத்துங்கள்."}</p>
+<CarCards/>
+</Sec>
+<Sec title={lang==="en"?"Book your cab in English or Tamil":"ஆங்கிலம் அல்லது தமிழில் கேப் முன்பதிவு செய்யுங்கள்"}>
+<p>{lang==="en"?`For ${routeName||cityName} taxi booking, send your pickup point, travel date, passenger count and preferred vehicle on WhatsApp. We will confirm availability and the applicable fare.`:`${routeName||cityName} கேப் முன்பதிவுக்கு பிக்கப் இடம், பயணத் தேதி, பயணிகள் எண்ணிக்கை மற்றும் விரும்பும் வாகனத்தை வாட்ஸ்அப்பில் அனுப்புங்கள். வாகனக் கிடைக்கும் நிலை மற்றும் பொருந்தும் கட்டணத்தை உறுதிப்படுத்துகிறோம்.`}</p>
+<div className="actions"><a className="btn wa" href={wa(whatsappDetailsMessage)} target="_blank" rel="noreferrer">{lang==="en"?"Chat on WhatsApp":"வாட்ஸ்அப்பில் உரையாடுங்கள்"}</a><Link className="btn ghost" to="/tariff">{lang==="en"?"View full tariff":"முழு கட்டண விவரத்தைப் பார்க்க"}</Link></div>
+</Sec>
+<CTA/></></LocalizedContent>)
+}
 
-export function GalleryPage(){useTitle("Our Fleet Gallery");return(<LocalizedContent><><Head title="Our Fleet Gallery" sub="Explore our dependable drop taxi fleet for one-way, airport, and outstation trips."/><Sec title="Cab photos" alt><GalleryGrid/></Sec><CTA/></></LocalizedContent>)}
-
-export function About(){useTitle("About Us");return(<LocalizedContent><><Head title="About Epic Drop Taxi" sub="A Neyveli-based drop taxi service connecting Tamil Nadu, Puducherry, Bengaluru and Kerala."/>
+export function GalleryPage(){useTitle("Our Fleet Gallery","View Epic Drop Taxi's fleet photos and explore vehicles available for one-way, airport and outstation trips from Neyveli.");return(<LocalizedContent><><Head title="Our Fleet Gallery" sub="Explore our dependable drop taxi fleet for one-way, airport, and outstation trips."/><Sec title="Cab photos" alt><GalleryGrid/></Sec><CTA/></></LocalizedContent>)}
+export function About(){useTitle("About Us","Learn about Epic Drop Taxi, a Neyveli-based taxi service offering one-way, airport and outstation trips across Tamil Nadu and nearby states.");return(<LocalizedContent><><Head title="About Epic Drop Taxi" sub="A Neyveli-based drop taxi service connecting Tamil Nadu, Puducherry, Bengaluru and Kerala."/>
 <Sec><div className="two"><Img label="About us" src={IMG.about} className="h320"/><div><h2>Our story</h2><p>Epic Drop Taxi runs from Vadakuthu, Neyveli, serving Cuddalore and Villupuram districts and one way trips between cities across South India. We believe you should pay for the journey you take, with clear fares and a driver who shows up on time.</p><div className="stats dark">{[["5K+","Trips"],["100+","Routes"],["24/7","Support"],["4.9★","Rating"]].map(([a,b])=><div key={b}><b>{a}</b><span>{b}</span></div>)}</div></div></div></Sec>
 <Sec title="Our promise" alt><div className="grid3">{[["Transparent pricing","Per-km fares and charges listed on the tariff page."],["Safe journeys","Verified drivers and well-maintained cabs."],["Always available","Call or WhatsApp us any time of day or night."]].map(([t,d])=><div className="card pad" key={t}><h3>{t}</h3><p className="muted">{d}</p></div>)}</div></Sec><CTA/></></LocalizedContent>)}
 
 export function Tariff(){
-  useTitle("Tariff");
+  useTitle("Tariff","Compare Epic Drop Taxi one-way, round-trip, airport and local taxi fares from Neyveli. Tolls, permits and applicable extra charges are listed.");
   const [f,setF]=useState({from:"",to:"",type:"one-way",car:"sedan"});
   const {quote,error,loading,calculate,reset}=useRouteFare();
   const s=k=>e=>{setF({...f,[k]:e.target.value});reset();};
@@ -256,10 +341,10 @@ export function Tariff(){
 <Sec title="Tariff tables" alt><div className="grid2">{tariff.map(([t,rows])=><div className="card" key={t}><h3 className="th">{t}</h3><table><tbody>{rows.map(([a,b])=><tr key={a}><td>{a}</td><td>{b}</td></tr>)}</tbody></table></div>)}</div></Sec>
 <Sec title="State wise permit charges"><table className="full"><thead><tr><th>State</th><th>6+1</th><th>7+1</th></tr></thead><tbody>{permits.map(([s,a,b])=><tr key={s}><td>{s}</td><td>₹{a}</td><td>₹{b}</td></tr>)}</tbody></table><p className="muted sm">Permit charges are collected as per state regulations and are extra on the trip fare.</p></Sec><CTA/></></LocalizedContent>)}
 
-export function Services(){useTitle("Our Services");return(<LocalizedContent><><Head title="Our Services" sub="Everything you need for a smooth road trip."/>
+export function Services(){useTitle("Our Services","Explore one-way drop taxi, airport transfer and outstation cab services from Neyveli with 24/7 booking.");return(<LocalizedContent><><Head title="Our Services" sub="Everything you need for a smooth road trip."/>
 <Sec><div className="grid3">{allServices.map(([t,p],i)=><Link to={p} className="card pad" key={t}><div className="big">{["🚕","✈️","🛣️","📍","⏱️","🛕"][i]}</div><h3>{t}</h3><p className="muted">Tap for details and tariff.</p></Link>)}</div></Sec><CTA/></></LocalizedContent>)}
 
-export function Book(){useTitle("Book Now");const [q]=useSearchParams();
+export function Book(){useTitle("Book Now","Send your Neyveli taxi booking details to Epic Drop Taxi on WhatsApp for availability and fare confirmation.",{noindex:true});const [q]=useSearchParams();
 const [f,setF]=useState({type:"one-way",name:"",phone:"",from:q.get("from")||"",to:q.get("to")||"",date:"",time:"10:00",car:q.get("car")||"sedan"});
 const {quote,error,loading,calculate,reset}=useRouteFare();
 const s=k=>e=>{setF({...f,[k]:e.target.value});if(k==="from"||k==="to"||k==="car"||k==="type")reset();};
@@ -278,9 +363,9 @@ return(<LocalizedContent><><Head title="Book Your Ride" sub="Fill the form and s
 <button className="btn solid full">Send on WhatsApp</button></form>
 <div><h2>Prefer to talk?</h2><p>Call us any time, day or night.</p><Actions/><p className="muted">📞 {SITE.display}<br/>✉️ {SITE.email}</p></div></div></Sec></></LocalizedContent>)}
 
-export function Contact(){useTitle("Contact Us");return(<LocalizedContent><><Head title="Contact Us" sub="Call or WhatsApp for the fastest response."/>
+export function Contact(){useTitle("Contact Us","Call or WhatsApp Epic Drop Taxi in Neyveli for 24/7 one-way, airport and outstation taxi bookings.");return(<LocalizedContent><><Head title="Contact Us" sub="Call or WhatsApp for the fastest response."/>
 <Sec><div className="grid3">{[["📞","Call",SITE.display,tel],["💬","WhatsApp","Chat with us",wa("Hello, I would like to know more.")],["✉️","Email",SITE.email,`mailto:${SITE.email}`]].map(([i,t,v,h])=><a className="card pad center" href={h} key={t} target="_blank" rel="noreferrer"><div className="big">{i}</div><h3>{t}</h3><p className="muted">{v}</p></a>)}</div>
 <div className="two mt"><div><h2>Visit our office</h2><p>📍 {SITE.address}</p><p>🕒 Open 24/7</p><Actions/></div><iframe title="map" className="map" src={SITE.map} loading="lazy"/></div></Sec></></LocalizedContent>)}
 
-export function Legal({k}){const t=k==="terms"?"Terms of Use":"Privacy Policy";useTitle(t);return(<LocalizedContent><><Head title={t}/><Sec><div className="legal">{k==="terms"?<><p>Fares shown are approximate and are confirmed on WhatsApp or phone before pickup. Toll, state permit, parking, waiting, hill, pet and over-luggage charges are extra unless stated.</p><p>Bookings may be rescheduled or cancelled by contacting us as early as possible. Drivers may refuse unsafe or unlawful requests.</p><p>Replace this placeholder text with your final legal terms.</p></>:<><p>We collect only the details you share (name, phone, trip details) to arrange your booking. We do not sell your data.</p><p>Details sent via WhatsApp are handled under WhatsApp's own privacy policy.</p><p>Replace this placeholder text with your final privacy policy.</p></>}</div></Sec></></LocalizedContent>)}
-export const NotFound=()=><LocalizedContent><Sec title="Page not found"><Link className="btn solid" to="/">Go home</Link></Sec></LocalizedContent>;
+export function Legal({k}){const t=k==="terms"?"Terms of Use":"Privacy Policy";useTitle(t,`${t} for Epic Drop Taxi.`,{noindex:true});return(<LocalizedContent><><Head title={t}/><Sec><div className="legal">{k==="terms"?<><p>Fares shown are approximate and are confirmed on WhatsApp or phone before pickup. Toll, state permit, parking, waiting, hill, pet and over-luggage charges are extra unless stated.</p><p>Bookings may be rescheduled or cancelled by contacting us as early as possible. Drivers may refuse unsafe or unlawful requests.</p><p>Replace this placeholder text with your final legal terms.</p></>:<><p>We collect only the details you share (name, phone, trip details) to arrange your booking. We do not sell your data.</p><p>Details sent via WhatsApp are handled under WhatsApp's own privacy policy.</p><p>Replace this placeholder text with your final privacy policy.</p></>}</div></Sec></></LocalizedContent>)}
+export const NotFound=()=>{useTitle("Page not found","The page you requested could not be found.",{noindex:true});return <LocalizedContent><Sec title="Page not found"><Link className="btn solid" to="/">Go home</Link></Sec></LocalizedContent>};

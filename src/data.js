@@ -1,5 +1,5 @@
 // ===== EDIT YOUR BUSINESS DETAILS HERE =====
-export const SITE={name:"Epic Drop Taxi",phone:"919566227779",display:"+91 95662 27779",email:"epicdroptaxi@gmail.com",
+export const SITE={name:"Epic Drop Taxi",url:"https://neyvelicabs.vercel.app",phone:"919566227779",display:"+91 95662 27779",email:"epicdroptaxi@gmail.com",
 address:"Flat No. 1, Ashok Nagar, Vadakuthu, Neyveli, Cuddalore District, Tamil Nadu",
 instagram:"https://www.instagram.com/nfscabs2026",reviews:"https://maps.app.goo.gl/DMsuvWUT7mxQ4tYd9",write:"https://g.page/r/Cdla8uGVMJFWEAE/review",
 map:"https://www.google.com/maps?q=Vadakuthu+Neyveli&output=embed"};
@@ -79,7 +79,18 @@ export const cities=[
 ["vadalur","Vadalur","Minutes from our office. Vallalar Sathya Gnana Sabai devotees and families."],
 ["villupuram","Villupuram","Junction railway passengers and trips to Chennai, Puducherry and Trichy."],
 ["tiruvannamalai","Tiruvannamalai","Arunachaleswarar temple, Girivalam pilgrims and Ramana Ashram visitors."]];
-export const journeys=["neyveli-to-chennai","chennai-to-madurai","neyveli-to-chennai-airport","chennai-to-coimbatore","neyveli-to-pondicherry","chennai-to-bangalore","neyveli-to-bangalore","chennai-to-pondicherry"];
+export const journeys=["neyveli-to-chennai","chennai-to-madurai","neyveli-to-chennai-airport","chennai-to-coimbatore","neyveli-to-pondicherry","chennai-to-bangalore","neyveli-to-bangalore","chennai-to-pondicherry","coimbatore-airport-taxi"];
+export const seoRoutes=[
+{slug:"neyveli-to-chennai",from:"Neyveli",to:"Chennai",fromTa:"நெய்வேலி",toTa:"சென்னை",distanceKm:200},
+{slug:"chennai-to-madurai",from:"Chennai",to:"Madurai",fromTa:"சென்னை",toTa:"மதுரை",distanceKm:460},
+{slug:"neyveli-to-chennai-airport",from:"Neyveli",to:"Chennai Airport",fromTa:"நெய்வேலி",toTa:"சென்னை விமான நிலையம்",distanceKm:220,airport:true},
+{slug:"chennai-to-coimbatore",from:"Chennai",to:"Coimbatore",fromTa:"சென்னை",toTa:"கோயம்புத்தூர்",distanceKm:505},
+{slug:"neyveli-to-pondicherry",from:"Neyveli",to:"Pondicherry",fromTa:"நெய்வேலி",toTa:"புதுச்சேரி",distanceKm:100},
+{slug:"chennai-to-bangalore",from:"Chennai",to:"Bangalore",fromTa:"சென்னை",toTa:"பெங்களூரு",distanceKm:350},
+{slug:"neyveli-to-bangalore",from:"Neyveli",to:"Bangalore",fromTa:"நெய்வேலி",toTa:"பெங்களூரு",distanceKm:300},
+{slug:"chennai-to-pondicherry",from:"Chennai",to:"Pondicherry",fromTa:"சென்னை",toTa:"புதுச்சேரி",distanceKm:160},
+{slug:"coimbatore-airport-taxi",from:"Coimbatore",to:"Coimbatore Airport",fromTa:"கோயம்புத்தூர்",toTa:"கோயம்புத்தூர் விமான நிலையம்",distanceKm:12,airport:true,localAirport:true}
+];
 export const cars=[
 {id:"mini",name:"Mini",models:"Alto / WagonR",seats:"4+1",bags:1,one:14,round:18,driverBata:400,minimum:150},
 {id:"sedan",name:"Sedan",models:"Swift Dzire / Etios",seats:"4+1",bags:2,one:15,round:14,driverBata:400,minimum:150},
@@ -114,7 +125,7 @@ export const faqs=[
 ["Can I see the fare before I book?","Yes. Use the booking page for an approximate fare, send it on WhatsApp and we confirm the final fare before pickup."],
 ["Can I book an airport pickup or drop?","Yes. Share flight or travel time, pickup point and passenger count."]];
 export const services={
-"one-way-drop-taxi":{title:"One Way Drop Taxi",img:"oneway",intro:"Pay only for the journey you book, not for an empty return trip. City-to-city drops across Tamil Nadu, Puducherry, Bengaluru and Kerala.",points:["150 km minimum distance","Mini, Sedan, SUV, Innova, Crysta and High Cross","Fare confirmed before pickup","24/7 call and WhatsApp booking"]},
-"airport-taxi":{title:"Airport Taxi",img:"airport",intro:"Confirmed pickup or drop for Chennai, Trichy, Madurai, Coimbatore and Bengaluru airports, timed to your flight.",points:["Flight-time based scheduling","Meet and greet on request","Luggage-friendly SUVs","Day and night service"]},
-"outstation-taxi":{title:"Outstation Taxi",img:"outstation",intro:"Plan an intercity one-way or round-trip cab with the right vehicle for your group, family or business trip.",points:["One-way cab from Rs. 14 / km","150 km minimum distance","Hill, temple and tourist circuits","Verified, experienced drivers"]}};
+"one-way-drop-taxi":{title:"One Way Drop Taxi",img:"oneway",intro:"Pay only for the journey you book, not for an empty return trip. City-to-city drops across Tamil Nadu, Puducherry, Bengaluru and Kerala.",description:"Book a one-way drop taxi from Neyveli across Tamil Nadu and nearby states. Choose Mini, Sedan, SUV or Innova and confirm your fare before pickup.",points:["150 km minimum distance","Mini, Sedan, SUV, Innova, Crysta and High Cross","Fare confirmed before pickup","24/7 call and WhatsApp booking"]},
+"airport-taxi":{title:"Airport Taxi",img:"airport",intro:"Confirmed pickup or drop for Chennai, Trichy, Madurai, Coimbatore and Bengaluru airports, timed to your flight.",description:"Arrange a 24/7 airport taxi from Neyveli and across Tamil Nadu. Share your flight time and destination to confirm vehicle availability and fare.",points:["Flight-time based scheduling","Meet and greet on request","Luggage-friendly SUVs","Day and night service"]},
+"outstation-taxi":{title:"Outstation Taxi",img:"outstation",intro:"Plan an intercity one-way or round-trip cab with the right vehicle for your group, family or business trip.",description:"Book an outstation taxi from Neyveli for one-way and round-trip travel across Tamil Nadu and nearby states. Compare vehicles and confirm your fare before pickup.",points:["One-way cab from Rs. 14 / km","150 km minimum distance","Hill, temple and tourist circuits","Verified, experienced drivers"]}};
 export const allServices=[["One Way Drop Taxi","/one-way-drop-taxi"],["Airport Taxi","/airport-taxi"],["Outstation Taxi","/outstation-taxi"],["Local Pickup & Drop","/tariff"],["Hourly Rental Packages","/tariff"],["Temple & Pilgrimage Tours","/outstation-taxi"]];
